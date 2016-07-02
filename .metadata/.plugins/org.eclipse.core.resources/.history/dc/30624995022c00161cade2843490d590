@@ -1,0 +1,43 @@
+package dialogPackage;
+
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+
+import PersonAll.PersonAll;
+
+public class fightDialog extends JDialog{
+	JPanel jp1;
+	JButton attack = new JButton("攻击");
+	JButton defence = new JButton("使用道具");
+	JButton Skill = new JButton("使用技能");
+	JButton leave = new JButton("逃跑");
+	public fightDialog(PersonAll player,PersonAll boss) {
+		// TODO Auto-generated constructor stub
+		jp1 = new JPanel();
+		GridLayout gl = new GridLayout(2, 2);
+		gl.addLayoutComponent(null, attack);
+		jp1.setLayout(gl);
+		//attack.setBounds(100, 100, 50, 50);
+		jp1.add(attack);
+		jp1.add(defence);
+		jp1.add(Skill);
+		jp1.add(leave);
+		attack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("移库");
+			}
+		});
+		this.add(jp1);
+		this.setBounds(300, 450, 700, 200);
+		this.setVisible(true);
+	}
+}
