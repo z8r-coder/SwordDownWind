@@ -11,7 +11,7 @@ import PersonAll.zhenghaotian;
 import dialogPackage.fightDialog;
 import warFrame.fightScence_1;
 
-public class Main {
+public class main {
 	private KeyEvent e;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -21,5 +21,6 @@ public class Main {
 		//FirstSection fs = new FirstSection();
 		//liyunTown lt = new liyunTown();
 		new SecondSection();
+		//new fightScence_1(new yannanzheng(), new zhenghaotian());
 	}
 }

@@ -15,13 +15,12 @@ public class yannanzheng implements PersonAll{
 	private static int adderAttack;
 	private static String name;
 	private static int priority;//优先度，决定谁先出手
-	private static Vector<SkillAll> prosseSkill;
 	public yannanzheng(){
 		baseAttack = 30;
 		HP = 500;
 		MP = 500;
 		name = "燕南征";
-		priority = 30;
+		priority = 10;
 	}
 	public void  subHP(int paraHP) {
 		if(HP - paraHP < 0){
@@ -80,7 +79,7 @@ public class yannanzheng implements PersonAll{
 	@Override
 	public Vector<SkillAll> getSkillAll() {
 		// TODO Auto-generated method stub
-		return prosseSkill;
+		return null;//燕南征并不存在技能
 	}
 	@Override
 	public int probablity() {

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.io.BufferedReader"/>
-<fullyQualifiedTypeName name="java.io.Reader"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
-<fullyQualifiedTypeName name="java.awt.print.Printable"/>
-<fullyQualifiedTypeName name="readTxtFile"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="AbstractTest"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
@@ -37,27 +32,32 @@
 <fullyQualifiedTypeName name="Weapon.Weapon"/>
 <fullyQualifiedTypeName name="java.time.Duration"/>
 <fullyQualifiedTypeName name="javax.swing.JDialog"/>
-<fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.GridLayout"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
-<fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="warFrame.fightScence_1"/>
 <fullyQualifiedTypeName name="PersonAll.Hero"/>
 <fullyQualifiedTypeName name="java.lang.InstantiationError"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="dialogPackage.fightDialog"/>
-<fullyQualifiedTypeName name="PersonAll.PersonAll"/>
 <fullyQualifiedTypeName name="java.util.FormatFlagsConversionMismatchException"/>
-<fullyQualifiedTypeName name="PersonAll.zhenghaotian"/>
 <fullyQualifiedTypeName name="Skill.SkillAll"/>
 <fullyQualifiedTypeName name="basePackage.MyDialog"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.INTERNAL"/>
-<fullyQualifiedTypeName name="java.lang.Math"/>
-<fullyQualifiedTypeName name="basePackage.LenthAll"/>
 <fullyQualifiedTypeName name="Skill.ziqidonglai"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="basePackage.threadChange"/>
+<fullyQualifiedTypeName name="java.awt.Button"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="warFrame.fightScence_1"/>
+<fullyQualifiedTypeName name="PersonAll.yannanzheng"/>
+<fullyQualifiedTypeName name="PersonAll.zhenghaotian"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="basePackage.LenthAll"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="PersonAll.PersonAll"/>
+<fullyQualifiedTypeName name="java.lang.Iterable"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="basePackage.SecondSection"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="basePackage.SecondSection_final"/>
 </qualifiedTypeNameHistroy>
