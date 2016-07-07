@@ -1,0 +1,68 @@
+/*第七部分，燕南征被击败后的过场动画*/
+package basePackage;
+
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class SecondSection_final extends JFrame{
+	public SecondSection_final(){
+		setTitle("第一章：云深不知年几许");  
+        Toolkit tool = getToolkit();  
+        Dimension dim = tool.getScreenSize();  
+        setBounds(0, 0, LenthAll.WINDOW_WIDTH, LenthAll.WINDOW_HEIGHT); 
+        this.setLocation((int)(dim.getWidth() - LenthAll.WINDOW_WIDTH) / 2,(int)(dim.getHeight() - LenthAll.WINDOW_HEIGHT) / 2);//设置当前窗口在屏幕的正中央
+        this.addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent event) {
+				System.exit(0);
+        	}
+        });//设置关闭程序监听
+        JPanel jp = (JPanel) getContentPane();
+        this.setResizable(false);//固定窗口大小，不可伸缩，最大化
+        /*--------------------以上为窗口创建---------------------------------------*/
+        ImageIcon icon = new ImageIcon("src/imageSource/燕南征受伤.jpeg");
+        ImageIcon icon1 = new ImageIcon("src/imageSource/郑浩天.jpeg");
+        ImageIcon icon2 = new ImageIcon("src/imageSource/澹台湘.jpeg");
+        JLabel jback_yannanzheng = new JLabel(icon);
+        JLabel jback_zhenghaotian = new JLabel(icon1);
+        JLabel jback_tantaixiang = new JLabel(icon2);
+        jp.add(jback_yannanzheng);
+        setVisible(true);
+        MyDialog.showMessageDialog("                         紫气……东来……咳咳，灵霄心法第……九层                                             ", "燕南征",LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        MyDialog.showMessageDialog("              你的………心法…………居然已经练就如此………境界             ","燕南征", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        MyDialog.showMessageDialog("                                      你为何……还要留手？                                             ", "燕南征",LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        jback_yannanzheng.setVisible(false);
+        jp.add(jback_zhenghaotian);
+        jp.validate();
+        MyDialog.showMessageDialog("              我只要知道《无妄天书》的下落，我不想你死，更不想小师\n         妹伤心。                         ", "郑浩天", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        MyDialog.showMessageDialog("                                      告诉我无妄天书的下落                                             ", "郑浩天", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        jback_zhenghaotian.setVisible(false);
+        jback_yannanzheng.setVisible(true);
+        MyDialog.showMessageDialog("                二十年前，我已告诉于你，我武功长进并非得益于无妄天\n        书，是有高人相助，如今你依旧不信我。                       ", "燕南征", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        jback_yannanzheng.setVisible(false);
+        jp.add(jback_tantaixiang);
+        jp.validate();
+        jback_tantaixiang.setVisible(true);
+        MyDialog.showMessageDialog("                   师兄，多年不见，还是这般面冷心热。                                         ", "澹台湘", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        jback_tantaixiang.setVisible(false);
+        jback_zhenghaotian.setVisible(true);
+        MyDialog.showMessageDialog("                     小师妹，好久不见。                  ", "郑浩天", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        jback_zhenghaotian.setVisible(false);
+        jback_tantaixiang.setVisible(true);
+        MyDialog.showMessageDialog("                      是我爹派你来的。                                 ", "澹台湘", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        jback_tantaixiang.setVisible(false);
+        jback_zhenghaotian.setVisible(true);
+        MyDialog.showMessageDialog("                是，此次前来，除了无妄天书的下落，岛主还交代，务必\n     将小师妹带回灵霄岛。", "郑浩天", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        MyDialog.showMessageDialog("                  (顿了一顿)……岛主，他很想你！", "郑浩天", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+        jback_zhenghaotian.setVisible(false);
+        jback_tantaixiang.setVisible(true);
+        MyDialog.showMessageDialog("            好,我跟你回去，但你必须放了南征，且从此不再踏入小镇半步，更不许伤害小镇里的人。", "澹台湘", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+	}
+}

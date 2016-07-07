@@ -74,5 +74,6 @@ public class FirstSection extends JFrame{
         jl_4.setVisible(true);
         MyDialog.showMessageDialog("  "+"         (飞身出屋)多想看着你长大啊……勿寻，勿念，保重。", "澹台湘", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
         setVisible(false);
+        new liyunTown();
 	}
 }

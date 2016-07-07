@@ -66,6 +66,7 @@ public class JusticAndDamon extends JFrame{
 		cp4.setVisible(true);
 		MyDialog.showMessageDialog("  "+"    只是不知，这一世的江湖，又将掀起怎样的腥风血浪，", null, LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
 		setVisible(false);
+		new Prologue();
 	}
 
 }

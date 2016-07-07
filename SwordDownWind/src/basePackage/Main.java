@@ -3,7 +3,10 @@ import java.awt.KeyEventPostProcessor;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.print.Printable;
 import java.util.Scanner;
+
+import javax.swing.plaf.basic.BasicTreeUI.TreeCancelEditingAction;
 
 import PersonAll.Hero;
 import PersonAll.yannanzheng;
@@ -16,11 +19,6 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//liyunMap lym = new liyunMap();
-		//JusticAndDamon jad = new JusticAndDamon();
-		//Prologue pl = new Prologue();
-		//FirstSection fs = new FirstSection();
-		//liyunTown lt = new liyunTown();
-		new SecondSection();
-		//new fightScence_1(new yannanzheng(), new zhenghaotian());
+		new SecondSection_final();
 	}
 }

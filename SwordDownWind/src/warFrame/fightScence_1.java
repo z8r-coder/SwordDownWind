@@ -1,4 +1,6 @@
-/*剧情BOSS专用战斗场景*/
+/*剧情BOSS专用战斗场景
+ * 使用boss打斗场景，番号表
+ * 1:  燕南征 vs 郑浩天*/
 package warFrame;
 import basePackage.*;
 import dialogPackage.fightDialog;
@@ -27,7 +29,7 @@ import PersonAll.zhenghaotian;
 public class fightScence_1 extends JFrame implements ActionListener{
 	PersonAll player;
 	PersonAll boss;
-	
+	int flag;
 	private threadChange tc;
 	private String blanck = "                        ";
 	private int fightHead_x_player = 0;
@@ -54,7 +56,7 @@ public class fightScence_1 extends JFrame implements ActionListener{
     JLabel jl_attack_boss = new JLabel();
     
     JPanel jp;
-	public fightScence_1(PersonAll player,PersonAll boss) {
+	public fightScence_1(PersonAll player,PersonAll boss,int flag) {  //构造参数分别是 玩家，boss和下一个弹出窗口
 		// TODO Auto-generated constructor stub
 		tc = new threadChange(1000);
 		setTitle("战斗");  
@@ -72,6 +74,7 @@ public class fightScence_1 extends JFrame implements ActionListener{
         this.setResizable(false);
         this.player = player;
         this.boss = boss;
+        this.flag = flag;
         //--------------------------------------------------------------------------
         JLabel jl_player_head = player.getHeadPhoto();
         jl_player_head.setBounds(fightHead_x_player, fightHead_y, fightHead_image_width, fightHead_image_height);
@@ -230,7 +233,9 @@ public class fightScence_1 extends JFrame implements ActionListener{
 				jp.updateUI();
 				MyDialog.showMessageDialog(blanck + "战斗失败，角色生命值下降为0，已死亡", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
 				setVisible(false);
-
+				if(flag == 1){
+					new SecondSection_final();
+				}
 			}
 			else if(boss.getnowHP() <= 0){
 				setInfo(player, boss);

@@ -1,3 +1,4 @@
+/*暂时无用类*/
 package dialogPackage;
 
 
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 import PersonAll.PersonAll;
 import basePackage.LenthAll;
 import basePackage.MyDialog;
+
 
 public class fightDialog extends JDialog{
 	private String blanck = "                        ";

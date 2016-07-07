@@ -39,5 +39,6 @@ public class Prologue extends JFrame{
         MyDialog.showMessageDialog("                                    "+"哈哈.......我们似乎很久没有对弈过了!", "白衣男子",LenthAll.TALK_DIALOG_WIDTH , LenthAll.TALK_DIALOG_HEIGHT);
         MyDialog.showMessageDialog("                                                   "+"从她走的那天起！", "青衣男子", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
         setVisible(false);
+        new FirstSection();
 	}
 }

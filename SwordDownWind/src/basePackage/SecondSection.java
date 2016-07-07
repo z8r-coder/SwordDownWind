@@ -88,7 +88,7 @@ public class SecondSection extends JFrame{
 				jp.updateUI();
 				if(Person_x == 11 && Person_y == 25){
 					dispose();
-					new fightScence_1(new yannanzheng(), new zhenghaotian());
+					new fightScence_1(new yannanzheng(), new zhenghaotian(),1);
 				}
 			}
 		});

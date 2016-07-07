@@ -1,6 +1,7 @@
 package basePackage;
 
 public interface MapDeploy {
+	int PERSON_TWO_STAND = 7;
 	int BOSS_ON = 6;
 	int SEA_ON = 5;
 	int TREE_ON = 4;
