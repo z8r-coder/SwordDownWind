@@ -99,19 +99,16 @@ public class SecondSection_final extends JFrame{
         jback_tantaixiang.setVisible(true);
         MyDialog.showMessageDialog("                            清州，万里飘香", "澹台湘", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
         jback_tantaixiang.setVisible(false);
-        init();
+        init(matrix);
         paintMap(matrix, jp);
         jp.updateUI();
         MyDialog.showMessageDialog("                                     湘儿…………保重 ", "燕南征", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
         move(16, jp);
         MyDialog.showMessageDialog("                                           保重。", "澹台湘", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
         move(6, jp);
-//        System.out.println(boss_x);
-//        System.out.println(boss_y);
-//        matrix[boss_x][boss_y] = MapDeploy.GRASSLAND_ON;
-//        matrix[boss_x][boss_y - 1] = MapDeploy.GRASSLAND_ON;
-//        paintMap(matrix, jp);
-//        jp.updateUI();
+        tc.run(1000);
+        setVisible(false);
+        new GameStart();
 	}
 	
 	private void move(int movNum,JPanel jp){
@@ -124,7 +121,13 @@ public class SecondSection_final extends JFrame{
 			jp.updateUI();
 		}
 	}
-	private void init() {
+	
+	private void init(int[][] matrix) {
+		Boss.clear();
+		Tree.clear();
+		Person.clear();
+		Land.clear();
+		Person_two.clear();
 		ImageIcon tree = new ImageIcon("src/imageSource/森林.png");
 		ImageIcon boss = new ImageIcon("src/imageSource/person.png");
 		ImageIcon land = new ImageIcon("src/imageSource/草地.png");

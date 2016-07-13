@@ -1,0 +1,15 @@
+package testStatic;
+
+public class mainTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(new StaticClass());
+		System.out.println(new StaticClass());
+		System.out.println(StaticClass.a);
+		another d = new another();
+		d.Print();
+		System.out.println(StaticClass.a);
+	}
+
+}

@@ -1,0 +1,44 @@
+package basePackage;
+
+import java.applet.AudioClip;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+
+public class music {
+	private static AudioClip audio;
+	public music (String s){
+		URL codebase = null;
+		try {
+			codebase  = new URL(s);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		audio = new AudioClip() {
+			
+			@Override
+			public void stop() {
+				// TODO Auto-generated method stub
+				this.stop();
+			}
+			
+			@Override
+			public void play() {
+				// TODO Auto-generated method stub
+				this.play();
+			}
+			
+			@Override
+			public void loop() {
+				// TODO Auto-generated method stub
+				this.loop();
+			}
+		};
+			
+	}
+}

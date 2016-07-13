@@ -1,0 +1,26 @@
+package basePackage;
+
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.io.File;
+import java.net.MalformedURLException;
+
+public class music {
+	private File file;
+	private boolean loop = false;
+	private AudioClip audioClip;
+	private AudioClip chosenClip;
+	public music(String s){
+		file = new File(s);
+		try {
+			audioClip = Applet.newAudioClip(file.toURL());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		audioClip.loop();
+		chosenClip = audioClip;
+		loop = true;
+		chosenClip.loop();
+	}
+}

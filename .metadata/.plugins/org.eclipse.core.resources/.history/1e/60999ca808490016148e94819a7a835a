@@ -1,0 +1,12 @@
+package basePackage;
+
+import java.util.Vector;
+
+public class Monster {
+	private Vector<String> vc;
+	public Monster() {
+		// TODO Auto-generated constructor stub
+		vc = readText.read("src/MapSource/monster_Table.txt");
+		System.out.println(vc.get(0));
+	}
+}

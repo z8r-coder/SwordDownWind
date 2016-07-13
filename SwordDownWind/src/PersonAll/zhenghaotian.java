@@ -101,4 +101,22 @@ public class zhenghaotian implements PersonAll{
 	public Vector<SkillAll> getSkillAll() {
 		return prosseSkill;
 	}
+
+	@Override
+	public int getLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getEX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void addEX(int paraEX) {
+		// TODO Auto-generated method stub
+		
+	}
 }

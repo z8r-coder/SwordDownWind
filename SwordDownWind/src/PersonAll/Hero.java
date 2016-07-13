@@ -9,26 +9,26 @@ import javax.swing.JLabel;
 import Medicament.medicament;
 import Skill.SkillAll;
 import Weapon.Weapon;
+import basePackage.newTrip;
 
 public class Hero implements PersonAll{
-	private static int limitedHP;
-	private static int limitedMP;
-	private static int nowHP;
-	private static int nowMP;
-	private static int Level;//关于升级算法，后谈。
-	private static int priority;
-	private static int ex;//经验
-	private static int baseAttack; //基础攻击力会随着，等级的增加而改变。
+	private static int limitedHP = 100;
+	private static int limitedMP = 100;
+	private static int nowHP = 100;
+	private static int nowMP = 100;
+	private static int Level = 1;//关于升级算法，后谈。
+	private static int priority = 2;
+	private static int ex = 0;//经验
+	private static int baseAttack = 10; //基础攻击力会随着，等级的增加而改变。
 	private static int adderAttack;
 	private static String name;
-	private static HashMap<String, Weapon> prosseWeapon;
-	private static HashMap<String, medicament> prosseMedicament;
-	private static Vector<SkillAll> prosseSkill;//为达到泛型选择vector
+	private static HashMap<String, Weapon> prosseWeapon = new HashMap<>();
+	private static HashMap<String, medicament> prosseMedicament = new HashMap<>();
+	private static Vector<SkillAll> prosseSkill = new Vector<>();//为达到泛型选择vector
 	
 	public Hero() {
 		// TODO Auto-generated constructor stub
 		name = "燕惊寒";
-		prosseSkill = new Vector<>();
 	}
 	public void setlimitedHP(int paraHP) {
 		limitedHP = paraHP;						//根据等级算法来设置血条上线
@@ -135,5 +135,20 @@ public class Hero implements PersonAll{
 	public int probablity() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public int getLevel() {
+		// TODO Auto-generated method stub
+		return Level;
+	}
+	@Override
+	public int getEX() {
+		// TODO Auto-generated method stub
+		return ex;
+	}
+	@Override
+	public void addEX(int paraEX) {
+		// TODO Auto-generated method stub
+		ex = ex + paraEX;
 	}
 }

@@ -22,4 +22,7 @@ public interface PersonAll {
 	JLabel getHeadPhoto();
 	Vector<SkillAll> getSkillAll();
 	int probablity();
+	int getLevel();
+	int getEX();
+	void addEX(int paraEX);
 }
