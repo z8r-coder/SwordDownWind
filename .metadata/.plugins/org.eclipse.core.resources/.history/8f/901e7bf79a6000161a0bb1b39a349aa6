@@ -1,0 +1,99 @@
+/*习得功夫，第十章*/
+package basePackage;
+
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import Medicament.jinchuanggao;
+import Medicament.yuexiancao;
+import PersonAll.Hero;
+import PersonAll.PersonAll;
+import Skill.Longhuquan;
+import Skill.Sancaiguiyuan;
+import Weapon.Bahuangnulong;
+
+public class Kongfu extends JFrame{
+	private Hero player;
+	public Kongfu(Hero player) {
+		
+		this.player = player;
+		
+		
+		// TODO Auto-generated constructor stub
+		setTitle("第二章：流年似水不敢忘");
+		Toolkit tool = getToolkit();
+		Dimension dim = tool.getScreenSize();
+		setBounds(0, 0, LenthAll.WINDOW_WIDTH, LenthAll.WINDOW_HEIGHT);
+		this.setLocation((int) (dim.getWidth() - LenthAll.WINDOW_WIDTH) / 2,
+				(int) (dim.getHeight() - LenthAll.WINDOW_HEIGHT) / 2);// 设置当前窗口在屏幕的正中央
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent event) {
+				System.exit(0);
+			}
+		});// 设置关闭程序监听
+		JPanel jp = (JPanel) getContentPane();
+		this.setResizable(false);// 固定窗口大小，不可伸缩，最大化
+		setVisible(true);
+		/*-------------------------windows create---------------------------------*/
+		ImageIcon icon = new ImageIcon("src/imageSource/insidehome.jpg");
+		ImageIcon icon_1 = new ImageIcon("src/imageSource/inHome.jpg");
+		ImageIcon icon_2 = new ImageIcon("src/imageSource/对饮.jpeg");
+		ImageIcon icon_3 = new ImageIcon("src/imageSource/练武.jpg");
+		ImageIcon icon_4 = new ImageIcon("src/imageSource/光阴.jpg");
+		
+		JLabel Drinking = new JLabel(icon);
+		JLabel home = new JLabel(icon_1);
+		JLabel DrinkTogether = new JLabel(icon_2);
+		JLabel Kongfu = new JLabel(icon_3);
+		JLabel time = new JLabel(icon_4);
+		
+		jp.add(Drinking);
+		jp.validate();
+		MyDialog.showMessageDialog("               无论如何，一定要借这次机会，让师傅教我功夫~", "燕惊寒", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		jp.add(home);
+		Drinking.setVisible(false);
+		jp.validate();
+		MyDialog.showMessageDialog("                         师傅酒来啦~", "燕惊寒", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                               酒国三巡........", null, LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		home.setVisible(false);
+		jp.add(DrinkTogether);
+		jp.validate();
+		MyDialog.showMessageDialog("          师傅啊，我来卧龙居六载有余，可你却从未教授我一招一式！（醉熏熏）", "燕惊寒", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                              喔！你着急了？", "卧龙子",LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("            不急？如何能不急，你当年诺我，跟你学武十年，便有实力\n    寻得父母，可如今半数已去，我却还未有半点作为。", "燕惊寒", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                 你真的觉得一点变化都没有？", "卧龙子", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                 有什么变化？为何我一点儿也未感觉", "燕惊寒", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                   好，既然你如此着急，从明日起我便传授你武功！", "卧龙子", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                    无语...........", "燕惊寒", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		DrinkTogether.setVisible(false);
+		jp.add(Kongfu);
+		jp.validate();
+		MyDialog.showMessageDialog("                        翌日", null, LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                      从今日开始便传你武功，周天无极为内，三才归元剑，\n   龙虎掌等外功为辅。", "卧龙子", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                     光阴似箭，日月如梭，四年以后！", null, LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		Kongfu.setVisible(false);
+		jp.add(time);
+		jp.validate();
+		MyDialog.showMessageDialog("                      恭喜您习得内功心法 周天无极", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                      恭喜您习得外功 三才归元剑", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                      恭喜您习得外功 龙虎掌", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		player.addSkill(new Longhuquan());
+		player.addSkill(new Sancaiguiyuan());
+		MyDialog.showMessageDialog("                      十年已逝，我也完成你当年的承诺，于此，赠你一把八\n   荒怒龙剑，和数个金疮药和月仙草！", "卧龙子", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                               获得八荒怒龙剑", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                               获得金疮药×2", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		MyDialog.showMessageDialog("                               获得月仙草×2", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		player.addMedicament("金疮药", new jinchuanggao(),2);
+		player.addMedicament("月仙草", new yuexiancao(), 2);
+		player.addWeapon("八荒怒龙剑", new Bahuangnulong());
+	}
+}

@@ -1,0 +1,7 @@
+package basePackage;
+
+import javax.swing.JFrame;
+
+public class GetInfoOfMom extends JFrame{
+
+}

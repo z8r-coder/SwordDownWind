@@ -1,0 +1,48 @@
+package dialogPackage;
+
+import java.awt.GridLayout;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import org.junit.Test;
+
+import Medicament.medicament;
+import Medicament.yuexiancao;
+import PersonAll.Hero;
+
+public class medicanmentProcess extends JDialog{
+	private Hero player;
+	private HashMap<String, medicament> medicamentProcess;
+	private JPanel jp;
+	private Vector<JButton> btnMedicament;
+
+	public medicanmentProcess() {
+		// TODO Auto-generated constructor stub
+		player = new Hero();
+		medicamentProcess = player.getMedicament();
+		jp = (JPanel)getContentPane();
+		btnMedicament = new Vector<>();
+		setBounds(300, 200, 600, 400);
+		jp.setLayout(new GridLayout(6, 6));
+		//player.addMedicament("‘¬œ…≤›", new yuexiancao());
+		for(Map.Entry<String, medicament> entry:medicamentProcess.entrySet()){
+			btnMedicament.add(new JButton(entry.getKey() + "°¡" +entry.getValue().count()));
+		}
+		for(int i = 0;i < btnMedicament.size();i++){
+			jp.add(btnMedicament.get(i));
+		}
+		
+		for(int i = 0;i < 36 - btnMedicament.size();i++){
+			JButton btnNULL = new JButton("ø’");
+		    jp.add(btnNULL);
+		}
+		show();
+	}
+}

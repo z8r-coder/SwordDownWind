@@ -1,27 +1,36 @@
 package PersonAll;
-import java.awt.event.MouseWheelEvent;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.plaf.metal.OceanTheme;
 
 import Medicament.medicament;
+import Medicament.yuexiancao;
 import Skill.SkillAll;
 import Weapon.Weapon;
-import basePackage.newTrip;
+import basePackage.LenthAll;
+import basePackage.MyDialog;
 
-public class Hero implements PersonAll{
+public class Hero implements PersonAll,Serializable{
+	private static int money = 0;
 	private static int limitedHP = 100;
 	private static int limitedMP = 100;
 	private static int nowHP = 100;
 	private static int nowMP = 100;
-	private static int Level = 1;//关于升级算法，后谈。
-	private static int priority = 2;
+	private static int Level = 1;
+	private static int priority = 20;
 	private static int ex = 0;//经验
-	private static int baseAttack = 10; //基础攻击力会随着，等级的增加而改变。
+	private static int ex_up = 10;//升级所需经验
+	private static int baseAttack = 1000; //基础攻击力会随着，等级的增加而改变。
 	private static int adderAttack;
 	private static String name;
+	private static int SkillPoint = 0;
+	private static int Person_x;
+	private static int Person_y;//the location
+	private static String MapName;//record the map
 	private static HashMap<String, Weapon> prosseWeapon = new HashMap<>();
 	private static HashMap<String, medicament> prosseMedicament = new HashMap<>();
 	private static Vector<SkillAll> prosseSkill = new Vector<>();//为达到泛型选择vector
@@ -95,14 +104,31 @@ public class Hero implements PersonAll{
 	public int getAdderAttack() {
 		return adderAttack;
 	}
+	public HashMap<String, Weapon> getWeapon(){
+		return prosseWeapon;
+	}
 	public void addWeapon(String name,Weapon wp){
-		prosseWeapon.put(name, wp);
+		if(prosseWeapon.size() >= 36){
+			MyDialog.showMessageDialog("您的装备背包已满，请处理部分不需要的装备", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+		}
+		else{
+			prosseWeapon.put(name, wp);
+		}
 	}
 	public void throwWeapon(String name) {
 		prosseWeapon.remove(name);
 	}
-	public void addMedicament(String name,medicament md) {
-		prosseMedicament.put(name, md);
+	public HashMap<String, medicament> getMedicament(){
+		return prosseMedicament;
+	}
+	public void addMedicament(String name,medicament md,int number) {
+		if(prosseMedicament.get(name) != null){
+			md.setCount(md.count() + number);
+		}
+		else{
+			prosseMedicament.put(name, md);
+			md.setCount(number);
+		}
 	}
 	public void throwMedicament(String name) {
 		prosseMedicament.remove(name);
@@ -117,7 +143,7 @@ public class Hero implements PersonAll{
 		return name;
 	}
 	public JLabel getHeadPhoto() {
-		ImageIcon icon = new ImageIcon("src/imageSource/燕惊寒.jpeg");
+		ImageIcon icon = new ImageIcon("src/imageSource/燕惊寒头像.jpeg");
 		JLabel jl_head = new JLabel(icon);
 		return jl_head;
 	}
@@ -150,5 +176,94 @@ public class Hero implements PersonAll{
 	public void addEX(int paraEX) {
 		// TODO Auto-generated method stub
 		ex = ex + paraEX;
+	}
+	@Override
+	public int getUpEx() {
+		// TODO Auto-generated method stub
+		return ex_up;
+	}
+	@Override
+	public void setUpEx(int ParaEx) {
+		// TODO Auto-generated method stub
+		ex_up = ParaEx;
+	}
+	@Override
+	public void setLevel(int paraLevel) {
+		// TODO Auto-generated method stub
+		Level = paraLevel;
+	}
+	@Override
+	public void setEx(int paraEx) {
+		// TODO Auto-generated method stub
+		ex = paraEx;
+	}
+	@Override
+	public void setPriority(int para) {
+		// TODO Auto-generated method stub
+		priority = para;
+	}
+	@Override
+	public void setNowHP(int paraHP) {
+		// TODO Auto-generated method stub
+		nowHP = paraHP;
+	}
+	@Override
+	public void setNowMP(int paraMP) {
+		// TODO Auto-generated method stub
+		nowMP = paraMP;
+	}
+	@Override
+	public void SkillPointPlus() {
+		// TODO Auto-generated method stub
+		SkillPoint++;
+	}
+	@Override
+	public void SkillPointSub() {
+		// TODO Auto-generated method stub
+		SkillPoint--;
+	}
+	@Override
+	public int getSkillPoint() {
+		// TODO Auto-generated method stub
+		return SkillPoint;
+	}
+	@Override
+	public int getMoney() {
+		// TODO Auto-generated method stub
+		return money;
+	}
+	@Override
+	public void addMoney(int paraMoney) {
+		// TODO Auto-generated method stub
+		money += paraMoney;
+	}
+	@Override
+	public void subMoney(int paraMoney) {
+		// TODO Auto-generated method stub
+		money -= paraMoney;
+	}
+	
+	public void setX(int px){
+		this.Person_x = px;
+	}
+	
+	public void setY(int py) {
+		this.Person_y = py;
+	}
+	
+	public int getX(){
+		return Person_x;
+	}
+	
+	public int getY() {
+		return Person_y;
+	}
+	
+	public void setMapName(String mapName) {
+		this.MapName = mapName;
+	}
+	
+	public String getMapName(){
+		return MapName;
 	}
 }

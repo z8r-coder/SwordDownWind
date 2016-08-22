@@ -1,0 +1,49 @@
+package basePackage;
+
+import java.util.Vector;
+
+import javax.swing.JLabel;
+
+import PersonAll.Hero;
+
+public class HeroInfo {
+	private static Vector<JLabel> HeroInfo = new Vector<>();
+	private static Hero player = new Hero();
+	private static final int fightHead_x = LenthAll.WINDOW_WIDTH - 200;
+	private static final int fightHead_y = 0;
+	private static final int fightHead_image_width = 200;
+	private static final int fightHead_image_height = 190;
+	private static final int WIDTH = 80;
+	private static final int HEIGHT = 20;
+	private static JLabel name,level,HP,MP,attack,ex;
+	
+	public static Vector<JLabel> initInfo(){
+		name = new JLabel("姓名：" + player.getname());
+		level = new JLabel("等级：" + player.getLevel());
+		HP = new JLabel("HP：" + player.getnowHP() + "//" + player.getlimitedHP());
+		MP = new JLabel("MP：" + player.getnowMP() + "//" + player.getlimitedMP());
+		attack = new JLabel("攻击力：" + player.getBaseAttack());
+		ex = new JLabel("经验：" + player.getEX() + " / " + player.getUpEx());
+		name.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 20, WIDTH, HEIGHT);
+		level.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60,fightHead_image_height + 40, WIDTH, HEIGHT);
+		ex.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 60, WIDTH,HEIGHT);
+		HP.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 100, WIDTH, HEIGHT);
+		MP.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 120, WIDTH, HEIGHT);
+		attack.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 140, WIDTH, HEIGHT);
+		HeroInfo.add(name);
+		HeroInfo.add(level);
+		HeroInfo.add(HP);
+		HeroInfo.add(MP);
+		HeroInfo.add(attack);
+		HeroInfo.add(ex);
+		return HeroInfo;
+	}
+	public static void updateInfo(Vector<JLabel> HeroInfo){
+		HeroInfo.get(0).setText("姓名：" + player.getname());
+		HeroInfo.get(1).setText("等级：" + player.getLevel());
+		HeroInfo.get(2).setText("HP：" + player.getnowHP() + "//" + player.getlimitedHP());
+		HeroInfo.get(3).setText("MP：" + player.getnowMP() + "//" + player.getlimitedMP());
+		HeroInfo.get(4).setText("攻击力：" + player.getBaseAttack());
+		HeroInfo.get(5).setText("经验：" + player.getEX() + " / " + player.getUpEx());
+	}
+}

@@ -1,0 +1,23 @@
+package Skill;
+
+public class Sancaiguiyuan implements SkillAll{
+
+	@Override
+	public int consume() {
+		// TODO Auto-generated method stub
+		return 30;
+	}
+
+	@Override
+	public int DamageValue() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getSkillname() {
+		// TODO Auto-generated method stub
+		return "Èý²Å¹éÔª½£";
+	}
+
+}

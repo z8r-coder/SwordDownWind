@@ -1,0 +1,29 @@
+package basePackage;
+
+import java.util.Vector;
+
+import javax.swing.JLabel;
+
+import PersonAll.Hero;
+
+public class HeroInfo {
+	private static Vector<JLabel> HeroInfo = new Vector<>();
+	private static Hero player = new Hero();
+	
+	public static Vector<JLabel> initInfo(){
+		JLabel name,level,HP,MP,attack,ex;
+		name = new JLabel("姓名：" + player.getname());
+		level = new JLabel("等级：" + player.getLevel());
+		HP = new JLabel("HP：" + player.getnowHP() + "//" + player.getlimitedHP());
+		MP = new JLabel("MP：" + player.getnowMP() + "//" + player.getlimitedMP());
+		attack = new JLabel("攻击力：" + player.getBaseAttack());
+		ex = new JLabel("经验：" + player.getEX() + " / " + player.getUpEx());
+		HeroInfo.add(name);
+		HeroInfo.add(level);
+		HeroInfo.add(HP);
+		HeroInfo.add(MP);
+		HeroInfo.add(attack);
+		HeroInfo.add(ex);
+		return HeroInfo;
+	}
+}

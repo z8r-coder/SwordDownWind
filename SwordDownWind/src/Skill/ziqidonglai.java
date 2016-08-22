@@ -2,7 +2,7 @@ package Skill;
 
 public class ziqidonglai implements SkillAll{
 	private String skillname;
-	
+	private int level;
 	public ziqidonglai(){
 		skillname = "×ÏÆø¶«À´";
 	}
@@ -19,5 +19,35 @@ public class ziqidonglai implements SkillAll{
 	
 	public String getSkillname() {
 		return skillname;
+	}
+	@Override
+	public void level_plus() {
+		// TODO Auto-generated method stub
+		level++;
+	}
+	@Override
+	public int level() {
+		// TODO Auto-generated method stub
+		return 50;
+	}
+	@Override
+	public void setConsume(int para_Consume) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setDamageValue(int para_Value) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Double GrowthValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Double MPGrowthValue() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

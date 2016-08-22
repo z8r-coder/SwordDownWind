@@ -1,7 +1,13 @@
 package Skill;
 
 public interface SkillAll {
+	void level_plus();
+	int level();
 	int consume();
+	void setConsume(int para_Consume);
 	int DamageValue();
+	void setDamageValue(int para_Value);
 	String getSkillname();
+	Double GrowthValue();
+	Double MPGrowthValue();
 }

@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import PersonAll.Hero;
+
 public class liyunTown extends JFrame{
 	private Image mImage;
 	private threadChange tc;
@@ -29,7 +31,7 @@ public class liyunTown extends JFrame{
 	private int ImageWidth;
 	private int ImageHeiht;
 	private int [][]matrix;
-	public liyunTown() {
+	public liyunTown(Hero player) {
 		vcImage_mountain = new Vector<JLabel>();
 		vcImage_land = new Vector<JLabel>();
 		vcImage_house = new Vector<JLabel>();
@@ -66,7 +68,7 @@ public class liyunTown extends JFrame{
 				jp.updateUI();//刷新整个页面
 				if(Person_x == 5 && Person_y == 29){ 		//每张地图固定一个出口
 					setVisible(false);
-		        	SecondSection ss = new SecondSection();
+		        	SecondSection ss = new SecondSection(new Hero());
 		        	System.out.println(1);
 		        }
 			}

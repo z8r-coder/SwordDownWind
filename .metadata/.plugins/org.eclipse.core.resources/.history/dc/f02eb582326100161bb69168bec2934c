@@ -1,0 +1,39 @@
+package basePackage;
+import java.awt.KeyEventPostProcessor;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.print.Printable;
+import java.util.Scanner;
+import java.util.Vector;
+
+import javax.swing.plaf.basic.BasicTreeUI.TreeCancelEditingAction;
+
+import Medicament.yuexiancao;
+import PersonAll.Hero;
+import PersonAll.yannanzheng;
+import PersonAll.zhenghaotian;
+import Weapon.ziying;
+import dialogPackage.ProcessDialog;
+import dialogPackage.medicanmentProcess;
+import dialogPackage.weaponProcess;
+import warFrame.fightScence_1;
+import warFrame.monster_fight;
+
+public class main {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//liyunMap lym = new liyunMap();
+		//new SecondSection_final();
+		//new GameStart();
+		new newTrip();
+		//new ProcessDialog();
+		//new weaponProcess();
+		//new ProcessDialog();
+//		Vector<Integer> vc = new Vector<>();
+//		vc.add(0);
+//		new monster_fight(new Hero(), new Monster(),vc,1);
+		//new Kongfu(new Hero());
+		//new wanlipiaoxiang(new Hero());
+	}
+}

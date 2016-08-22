@@ -15,9 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import PersonAll.Hero;
 import PersonAll.yannanzheng;
 import PersonAll.zhenghaotian;
-import dialogPackage.fightDialog;
 import warFrame.fightScence_1;
 
 public class SecondSection extends JFrame{
@@ -29,7 +29,7 @@ public class SecondSection extends JFrame{
 	private int [][]matrix;
 	private int Person_x;
 	private int Person_y;
-	public SecondSection() {
+	public SecondSection(Hero player) {
 		// TODO Auto-generated constructor stub
 		tc = new threadChange(100);
 		Tree = new Vector<JLabel>();

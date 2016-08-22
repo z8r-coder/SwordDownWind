@@ -1,0 +1,49 @@
+//此类用来计算人物信息
+package basePackage;
+
+import org.junit.experimental.theories.Theories;
+
+public class ParaCaculating {
+	private static int level = 1;
+	private static int skill_level = 1;
+	/*hero's qualities' calculation*/
+	public static int plusLevel() {
+		level++;
+		return level;
+	}
+	public static void setLevel(int l){
+		level = l;
+	}
+	public static int exCaculate(int nowEx){             //每级的经验计算
+		int UP_ex;
+		UP_ex = nowEx + (int )(level * 0.1 * nowEx);
+		return UP_ex;
+	}
+	public static int HPCaculate(int nowHP){            //level up HP calculate
+		int UP_HP;
+		UP_HP = nowHP + (int )(level * 0.2 * nowHP);
+		return UP_HP;
+	}
+	public static int MPCaculate(int nowMP){                   // level up MP calculate
+		int UP_MP;
+		UP_MP = nowMP + (int )(level * 0.08 * nowMP);
+		return UP_MP;
+	}
+	public static int AttackCaculate(int nowAttack) {          //level up attack calculate
+		int UP_Attack;
+		UP_Attack = nowAttack + (int )(level * 0.1 + nowAttack);
+		return UP_Attack;
+	}
+	public static int priority(int nowPriority){              //level up priority calculate
+		nowPriority++;
+		return nowPriority;
+	}
+	
+	/*skill's calculation*/
+	public static void setSkillLevel(int para_level){
+		skill_level = para_level;
+	}
+	public static int MP_consume(int now_MP_consume){
+		return (int)(now_MP_consume + skill_level*now_MP_consume*0.8);
+	}
+}

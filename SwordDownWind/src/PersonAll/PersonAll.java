@@ -1,6 +1,5 @@
 package PersonAll;
 
-import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.JLabel;
@@ -18,11 +17,24 @@ public interface PersonAll {
 	int getnowMP();
 	int getBaseAttack();
 	int getPriority();
+	void setPriority(int para);
 	String getname();
 	JLabel getHeadPhoto();
 	Vector<SkillAll> getSkillAll();
 	int probablity();
 	int getLevel();
+	void setLevel(int paraLevel);
 	int getEX();
 	void addEX(int paraEX);
+	void setEx(int paraEx);
+	int getUpEx();
+	void setUpEx(int paraEx);
+	void setNowHP(int paraHP);
+	void setNowMP(int paraMP);
+	void SkillPointPlus();
+	void SkillPointSub();
+	int getSkillPoint();
+	int getMoney();
+	void addMoney(int paraMoney);
+	void subMoney(int paraMoney);
 }

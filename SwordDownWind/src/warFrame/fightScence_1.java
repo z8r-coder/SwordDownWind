@@ -3,7 +3,7 @@
  * 1:  燕南征 vs 郑浩天*/
 package warFrame;
 import basePackage.*;
-import dialogPackage.fightDialog;
+import dialogPackage.medicanmentProcess;
 
 import java.awt.Button;
 import java.awt.Dimension;
@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
 
 import org.omg.CORBA.INTERNAL;
 
+import PersonAll.Hero;
 import PersonAll.PersonAll;
 import PersonAll.zhenghaotian;
 
@@ -234,7 +235,7 @@ public class fightScence_1 extends JFrame implements ActionListener{
 				MyDialog.showMessageDialog(blanck + "战斗失败，角色生命值下降为0，已死亡", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
 				setVisible(false);
 				if(flag == 1){
-					new SecondSection_final();
+					new SecondSection_final(new Hero());
 				}
 			}
 			else if(boss.getnowHP() <= 0){
@@ -244,7 +245,7 @@ public class fightScence_1 extends JFrame implements ActionListener{
 			}
 		}
 		else if(e.getActionCommand().equals("使用道具")){
-			
+			new medicanmentProcess();
 		}
 		else if(e.getActionCommand().equals("技能")){
 			

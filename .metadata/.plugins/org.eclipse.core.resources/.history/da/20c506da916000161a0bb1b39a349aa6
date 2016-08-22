@@ -1,0 +1,31 @@
+package dialogPackage;
+
+import java.awt.GridLayout;
+import java.util.HashMap;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+
+import Medicament.medicament;
+import PersonAll.Hero;
+import Skill.SkillAll;
+
+public class SkillProcess extends JDialog{
+	
+	private Hero player;
+	private Vector<SkillAll> SkillProcess;
+	private JPanel jp;
+	private Vector<JButton> btnSkill;
+	
+	public SkillProcess() {
+		// TODO Auto-generated constructor stub
+		player = new Hero();
+		jp = (JPanel)getContentPane();
+		jp.setLayout(new GridLayout(6, 6));
+		SkillProcess = player.getSkillAll();
+		btnSkill = new Vector<>();
+		setBounds(300, 200, 600, 400);
+	}
+}

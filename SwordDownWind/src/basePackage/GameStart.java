@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.NonWritableChannelException;
@@ -20,6 +22,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import PersonAll.Hero;
 
 public class GameStart extends JFrame implements ActionListener{
 	private JButton start;//开始游戏按钮
@@ -132,10 +136,51 @@ public class GameStart extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("新的旅程")){
 			setVisible(false);
 			musicPlayer.Close();
-			new newTrip();
+			new newTrip(new Hero());
 		}
 		else if(e.getActionCommand().equals("旧的回忆")){
 			//序列化制作存档
+			SaveAndLoad sal = new SaveAndLoad(new Hero());
+			Hero player = sal.load();
+			if(player == null){
+				MyDialog.showMessageDialog("                    您还没有新的存档，请点击新的旅程！", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+			}
+			else{
+				Class<?> classType = null;
+				Constructor<?> con = null;
+				System.out.println(player.getLevel());
+				String s = "basePackage." + player.getname();//??
+				try {
+					classType = Class.forName(s);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					con = classType.getConstructor(Hero.class);
+				} catch (NoSuchMethodException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SecurityException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					con.newInstance(player);
+				} catch (InstantiationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalArgumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvocationTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		}
 		else if(e.getActionCommand().equals("制作相关")){
 			//

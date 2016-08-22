@@ -1,0 +1,22 @@
+package dialogPackage;
+
+import java.util.HashMap;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+
+import Medicament.medicament;
+import PersonAll.Hero;
+
+public class SkillProcess extends JDialog{
+	private Hero player;
+	private HashMap<String, medicament> medicamentProcess;
+	private JPanel jp;
+	private Vector<JButton> btnMedicament;
+	
+	public SkillProcess() {
+		// TODO Auto-generated constructor stub
+	}
+}

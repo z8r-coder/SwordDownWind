@@ -1,0 +1,295 @@
+/*monster fight scence*/
+package warFrame;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Vector;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import org.junit.Test;
+import org.omg.PortableInterceptor.INACTIVE;
+
+import PersonAll.Hero;
+import PersonAll.PersonAll;
+import basePackage.LenthAll;
+import basePackage.Monster;
+import basePackage.MyDialog;
+import basePackage.ParaCaculating;
+import basePackage.SecondSection_final;
+import basePackage.newTrip;
+import dialogPackage.medicanmentProcess;
+
+public class monster_fight extends JFrame implements ActionListener{
+	private Hero player;
+	private String blanck = "                        ";
+	private JPanel jp;//local container
+	
+	private int randNum;
+	
+	private JButton attack = new JButton("攻击");//攻击
+	private JButton defence = new JButton("使用道具");//使用道具按钮
+	private JButton Skill = new JButton("技能");//技能
+	private JButton leave = new JButton("逃跑");//逃跑
+	
+	private Vector<Integer> monster_Attack = new Vector<>();
+	private Vector<Integer> monster_HP = new Vector<>();
+	private Vector<Integer> monster_MP = new Vector<>();
+	private Vector<Integer> monster_Proirty = new Vector<>();
+	private Vector<Integer> monster_level = new Vector<>();
+	private Vector<Integer> monster_ex = new Vector<>();
+	private Vector<String> monster_name = new Vector<>();
+	private Vector<JLabel> monster_photo = new Vector<>();
+	
+    private JLabel jl_name = new JLabel();
+    private JLabel jl_HP = new JLabel();
+    private JLabel jl_MP = new JLabel();
+    private JLabel jl_attack = new JLabel();
+    
+    private JLabel jl_name_monster = new JLabel();
+    private JLabel jl_HP_monster = new JLabel();
+    private JLabel jl_MP_monster = new JLabel();
+    private JLabel jl_attack_monster = new JLabel();
+    
+	private final int fightHead_x_player = 0;
+	private final int fightHead_x_boss = LenthAll.WINDOW_WIDTH - 200;
+	private final int fightHead_y = 0;
+	private final int fightHead_image_width = 200;
+	private final int fightHead_image_height = 190;
+	private final int WIDTH = 80;//信息Label的宽度
+	private final int HEIGHT = 20;//信息Label的高度
+	
+	private Vector<Integer> num;//how many kinds of monster
+	
+	public monster_fight(Hero player,Monster monster,Vector<Integer> numVc,int randNum) {
+		// TODO Auto-generated constructor stub
+		setTitle("战斗");  
+        Toolkit tool = getToolkit();  
+        Dimension dim = tool.getScreenSize();  
+        setBounds(0, 0, LenthAll.WINDOW_WIDTH, LenthAll.WINDOW_HEIGHT); 
+        this.setLocation((int)(dim.getWidth() - LenthAll.WINDOW_WIDTH) / 2,(int)(dim.getHeight() - LenthAll.WINDOW_HEIGHT) / 2);//设置当前窗口在屏幕的正中央
+        this.addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent event) {
+				System.exit(0);
+        	}
+        });//设置关闭程序监听
+        this.setResizable(false);
+        setVisible(true);
+        jp = (JPanel)getContentPane();
+        jp.setLayout(null);
+        //----------------------All of above are to create the window-------------------------
+        this.player = player;
+        resolveMonster(numVc);
+        this.randNum = randNum;
+        num = numVc;
+        
+        JLabel jl_player_head = player.getHeadPhoto();
+        jl_player_head.setBounds(fightHead_x_player, fightHead_y, fightHead_image_width, fightHead_image_height);
+        jp.add(jl_player_head);
+        JLabel jl_boss_head = monster_photo.get(randNum);
+        jl_boss_head.setBounds(fightHead_x_boss, fightHead_y, fightHead_image_width, fightHead_image_height);
+        jp.add(jl_boss_head);
+        
+        jp.add(attack);
+        jp.add(defence);
+        jp.add(Skill);
+        jp.add(leave);
+        attack.setBounds(150, LenthAll.WINDOW_HEIGHT - 250, 300, 100);
+        defence.setBounds(450, LenthAll.WINDOW_HEIGHT - 250, 300, 100);
+        Skill.setBounds(150, LenthAll.WINDOW_HEIGHT - 150, 300, 100);
+        leave.setBounds(450, LenthAll.WINDOW_HEIGHT - 150, 300, 100);
+        /*设置监听*/
+        attack.addActionListener(this);
+        defence.addActionListener(this);
+        Skill.addActionListener(this);
+        leave.addActionListener(this);
+        
+        setInfo(player, randNum);
+        setInfoLocation();
+        jp.updateUI();
+        setVisible(false);
+	}
+	
+	//resolve the monster info,add them to the vector to storage
+	private void resolveMonster(Vector<Integer> numVc){      
+		Monster mon = new Monster();
+		for(int i = 0; i < numVc.size();i++){
+			String[] buffer = mon.getMonsterInfo(numVc.get(i));
+			monster_name.add(buffer[0]);
+			monster_level.add(Integer.parseInt(buffer[1]));
+			monster_HP.add(Integer.parseInt(buffer[2]));
+			monster_MP.add(Integer.parseInt(buffer[3]));
+			monster_Proirty.add(Integer.parseInt(buffer[4]));
+			monster_ex.add(Integer.parseInt(buffer[5]));
+			monster_Attack.add(Integer.parseInt(buffer[6]));
+			ImageIcon icon = new ImageIcon("src/imageSource/" + buffer[7] + ".jpg");
+			JLabel jl = new JLabel(icon);
+			monster_photo.add(jl);
+		}
+	}
+	
+	private void setInfo(PersonAll player,int randNum) {
+		//player's information
+		jl_name.setText("名称:" + player.getname());
+		jl_HP.setText("HP:"+ player.getnowHP());
+		jl_MP.setText("MP:"+ player.getnowMP());
+		jl_attack.setText("攻击力:" + player.getBaseAttack());
+		//monster's information
+		jl_name_monster.setText("名称:" + monster_name.get(randNum));
+		jl_HP_monster.setText("HP:" + monster_HP.get(randNum));
+		jl_MP_monster.setText("MP:" + monster_MP.get(randNum));
+		jl_attack_monster.setText("攻击力:" + monster_Attack.get(randNum));
+	}
+	
+	private void setInfoLocation() {
+        jl_name.setBounds(fightHead_image_width / 4, fightHead_image_height + 20, WIDTH, HEIGHT);
+        jp.add(jl_name);
+        jl_HP.setBounds(fightHead_image_width / 4, fightHead_image_height + 40, WIDTH, HEIGHT);
+        jp.add(jl_HP);
+        jl_MP.setBounds(fightHead_image_width / 4, fightHead_image_height + 60, WIDTH, HEIGHT);
+        jp.add(jl_MP);
+        jl_attack.setBounds(fightHead_image_width / 4,fightHead_image_height + 80,WIDTH,HEIGHT);
+        jp.add(jl_attack);
+        /*主角的战斗信息*/
+        
+        jl_name_monster.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width / 2, fightHead_image_height + 20, WIDTH, HEIGHT);
+        jp.add(jl_name_monster);
+        jl_HP_monster.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width / 2,fightHead_image_height + 40, WIDTH, HEIGHT);
+        jp.add(jl_HP_monster);
+        jl_MP_monster.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width / 2,fightHead_image_height + 60, WIDTH, HEIGHT);
+        jp.add(jl_MP_monster);
+        jl_attack_monster.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width / 2,fightHead_image_height + 80, WIDTH, HEIGHT);
+        jp.add(jl_attack_monster);
+        /*monster的战斗信息*/
+	}
+	
+	private void monster_sub_HP(int paraHP){
+		int temp = monster_HP.get(randNum);
+		temp -= paraHP;
+		monster_HP.remove(randNum);
+		monster_HP.insertElementAt(temp, randNum);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getActionCommand().equals("攻击")){
+			/*伤害，出手，优先度计算*/
+			
+			int playerFlag = 1;//回合制出手
+			int monsterFlag = 1;//
+			int monsterRealAttack = monster_Attack.get(randNum) + (int)(Math.random()*monster_Attack.get(randNum)*0.1);//boss基本伤害计算
+			int playerRealAttack = player.getBaseAttack() + (int)(Math.random()*player.getBaseAttack()*0.1);//玩家基本伤害计算
+			
+			if(player.getnowHP() > 0 && monster_HP.get(randNum) > 0){
+				if(player.getPriority() > monster_Proirty.get(randNum)){
+					playerFlag = 0;
+					monster_sub_HP(playerRealAttack);
+					MyDialog.showMessageDialog(blanck + player.getname() + "对"+ monster_name.get(randNum) + "造成了" + playerRealAttack + "点伤害", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+					setInfo(player, randNum);
+					jp.updateUI();
+					if(monster_HP.get(randNum) <= 0){
+						setInfo(player, randNum);
+						jp.updateUI();
+						player.addEX(monster_ex.get(randNum));
+						int temp_Ex;
+						while((temp_Ex = player.getEX() - player.getUpEx()) >= 0){ //level up!
+							player.setLevel(ParaCaculating.plusLevel());
+							ParaCaculating.setLevel(player.getLevel());
+							player.setEx(temp_Ex);
+							player.setUpEx(ParaCaculating.exCaculate(player.getUpEx()));
+							player.setlimitedMP(ParaCaculating.MPCaculate(player.getlimitedMP()));
+							player.setlimitedHP(ParaCaculating.HPCaculate(player.getlimitedHP()));
+							player.setBaseAttack(ParaCaculating.AttackCaculate(player.getBaseAttack()));
+							player.setPriority(ParaCaculating.priority(player.getPriority()));
+							MyDialog.showMessageDialog("                    恭喜您，升级啦，等级已经提升至" + player.getLevel(), "升级提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+							player.setNowHP(player.getlimitedHP());
+							player.setNowMP(player.getlimitedMP());
+						}
+						MyDialog.showMessageDialog(blanck + "战斗成功，点击确定退出战斗界面", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+						setVisible(false);	
+					}
+				}
+				else{
+					monsterFlag = 0;
+					player.subHP(monsterRealAttack);
+					MyDialog.showMessageDialog(blanck + monster_name.get(randNum) + "对"+ player.getname() + "造成了" + monsterRealAttack + "点伤害", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+					setInfo(player, randNum);
+					jp.updateUI();
+					if(player.getnowHP() <= 0){
+						setInfo(player, randNum);
+						jp.updateUI();
+						MyDialog.showMessageDialog(blanck + "战斗失败，角色生命值下降为0，已死亡", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+						setVisible(false);
+					}
+				}
+			}
+			
+			if(player.getnowHP() > 0 && monster_HP.get(randNum) > 0){
+				setInfo(player, randNum);
+				jp.updateUI();
+				if(playerFlag == 0 && monsterFlag == 1){//boss出手
+					player.subHP(monsterRealAttack);
+					MyDialog.showMessageDialog(blanck + monster_name.get(randNum) + "对" + player.getname() + "造成了" + monsterRealAttack + "点伤害", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+					playerFlag = 1;monsterFlag = 0;
+					setInfo(player, randNum);
+					jp.updateUI();
+					if(player.getnowHP() <= 0){
+						setInfo(player, randNum);
+						jp.updateUI();
+						MyDialog.showMessageDialog(blanck + "战斗失败，角色生命值下降为0，已死亡", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+						setVisible(false);
+					}
+				}
+				else if(playerFlag == 1 && monsterFlag== 0){//玩家出手								
+					monster_sub_HP(playerRealAttack);
+					MyDialog.showMessageDialog(blanck + player.getname() + "对"+ monster_name.get(randNum) + "造成了" + playerRealAttack + "点伤害", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+					playerFlag = 0;monsterFlag = 1;
+					setInfo(player, randNum);
+					jp.updateUI();
+					if(monster_HP.get(randNum) <= 0){
+						setInfo(player, randNum);
+						jp.updateUI();
+						player.addEX(monster_ex.get(randNum));
+						int temp_Ex;
+						while((temp_Ex = player.getEX() - player.getUpEx()) >= 0){ //level up!
+							player.setLevel(ParaCaculating.plusLevel());
+							ParaCaculating.setLevel(player.getLevel());
+							player.setEx(temp_Ex);
+							player.setUpEx(ParaCaculating.exCaculate(player.getUpEx()));
+							player.setlimitedMP(ParaCaculating.MPCaculate(player.getlimitedMP()));
+							player.setlimitedHP(ParaCaculating.HPCaculate(player.getlimitedHP()));
+							player.setBaseAttack(ParaCaculating.AttackCaculate(player.getBaseAttack()));
+							player.setPriority(ParaCaculating.priority(player.getPriority()));
+							MyDialog.showMessageDialog("                    恭喜您，升级啦，等级已经提升至" + player.getLevel(), "升级提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+							player.setNowHP(player.getlimitedHP());
+							player.setNowMP(player.getlimitedMP());
+						}
+						MyDialog.showMessageDialog(blanck + "战斗成功，点击确定退出战斗界面", "战斗信息", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+						setVisible(false);		
+					}
+				}
+				else{
+					System.exit(0);
+					MyDialog.showMessageDialog(blanck + "出现未预料错误，程序被迫中止", "错误", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_WIDTH);
+				}
+			}
+		}
+		else if(e.getActionCommand().equals("使用道具")){
+			new medicanmentProcess();
+		}
+		else if(e.getActionCommand().equals("技能")){
+			
+		}
+		else if(e.getActionCommand().equals("逃跑")){
+			
+		}
+	}
+}

@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import PersonAll.Hero;
 import PersonAll.yannanzheng;
 
 public class SecondSection_final extends JFrame{
@@ -26,7 +27,7 @@ public class SecondSection_final extends JFrame{
 	private int boss_x;
 	private int boss_y;
 	
-	public SecondSection_final(){
+	public SecondSection_final(Hero player){
 		Tree = new Vector<JLabel>();
 		Land = new Vector<JLabel>();
 		Boss = new Vector<JLabel>();

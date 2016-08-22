@@ -1,0 +1,49 @@
+package Skill;
+
+public class Longhuquan implements SkillAll{
+	private static int level = 1;
+	private static int value = 30;
+	private static int consumable = 20;
+	@Override
+	public void level_plus() {
+		// TODO Auto-generated method stub
+		level++;
+	}
+
+	@Override
+	public int level() {
+		// TODO Auto-generated method stub
+		return level;
+	}
+
+	@Override
+	public int consume() {
+		// TODO Auto-generated method stub
+		return consumable;
+	}
+
+	@Override
+	public int DamageValue() {
+		// TODO Auto-generated method stub
+		return value;
+	}
+
+	@Override
+	public String getSkillname() {
+		// TODO Auto-generated method stub
+		return "Áú»¢È­";
+	}
+
+	@Override
+	public void setConsume(int para_Counsume) {
+		// TODO Auto-generated method stub
+		this.consumable = para_Counsume;
+	}
+
+	@Override
+	public void setDamageValue(int para_Value) {
+		// TODO Auto-generated method stub
+		this.value = para_Value;
+	}
+
+}

@@ -1,0 +1,34 @@
+package basePackage;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import PersonAll.Hero;
+
+public class SaveAndLoad {
+	private Hero player;
+	private int MapNumber;//which map
+	private int Person_x,Person_y;//Person's location
+	
+	public SaveAndLoad(Hero player,int MapNumber,int Person_x,int Person_y) {
+		// TODO Auto-generated constructor stub
+		this.player = player;
+		this.MapNumber = MapNumber;
+		this.Person_x = Person_x;
+		this.Person_y = Person_y;
+	}
+	
+	public void save(){
+		try {
+			FileWriter fw = new FileWriter("src/MapSource/player.txt");
+			PrintWriter pw = new PrintWriter(fw);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}

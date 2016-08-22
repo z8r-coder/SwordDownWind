@@ -9,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.invoke.ConstantCallSite;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -19,12 +20,14 @@ import javax.swing.JPanel;
 
 import PersonAll.Hero;
 import PersonAll.PersonAll;
+import dialogPackage.ProcessDialog;
 import warFrame.monster_fight;
 
 public class newTrip extends JFrame implements ActionListener{
 	private int Person_x;
 	private int Person_y;
 	private Hero player;
+	private final String blank = "                                                 ";
 	private static final int fightHead_x = LenthAll.WINDOW_WIDTH - 200;
 	private static final int fightHead_y = 0;
 	private static final int fightHead_image_width = 200;
@@ -33,12 +36,6 @@ public class newTrip extends JFrame implements ActionListener{
 	private static final int HEIGHT = 20;
 	private JButton Goods;
 	private JButton exit;
-	private JLabel name;
-	private JLabel level;
-	private JLabel ex;
-	private JLabel HP;
-	private JLabel MP;
-	private JLabel attack;
 	private JLabel duty;
 	private Vector<JLabel> tree;
 	private Vector<JLabel> land;
@@ -48,19 +45,24 @@ public class newTrip extends JFrame implements ActionListener{
 	private Vector<JLabel> person;
 	private int [][]matrix;
 	private int [][]monster;
-	private int count_duty = 0;//主线任务，兔肉的数量
-	
-	public newTrip(){
+	private static int count_duty = 0;//主线任务，兔肉的数量
+	private Vector<Integer> numVc;//monster select;
+	private Vector<JLabel> heroInfo;
+	public newTrip(Hero player){
 		tree = new Vector<>();
 		land = new Vector<>();
 		montain = new Vector<>();
 		sea = new Vector<>();
 		hourse = new Vector<>();
 		person = new Vector<>();
+		numVc = new Vector<>();
 		matrix = new int[LenthAll.COUNT_ROW][LenthAll.COUNT_LATER_COL];
 		monster = new int[LenthAll.COUNT_ROW][LenthAll.COUNT_LATER_COL];
 		matrix = readTxtFile.readFile("src/MapSource/wolongMap.txt");
-		player = new Hero();
+		this.player = player;
+		numVc.add(0);
+		heroInfo = HeroInfo.initInfo();
+
 		setTitle("第二章：流年似水不敢忘");
 		Toolkit tool = getToolkit();
 		Dimension dim = tool.getScreenSize();
@@ -81,14 +83,14 @@ public class newTrip extends JFrame implements ActionListener{
 		ImageIcon icon_2 = new ImageIcon("src/imageSource/卧龙居.jpg");//卧龙居房间
 		ImageIcon icon_3 = new ImageIcon("src/imageSource/战斗.jpg");//伏刃战斗
 		ImageIcon icon_4 = new ImageIcon("src/imageSource/万里飘香.jpg");//万里飘香酒楼
-		ImageIcon icon_photo = new ImageIcon("src/imageSource/燕惊寒头像.jpeg");
+
 		
 		JLabel hero = new JLabel(icon);
 		JLabel inHome = new JLabel(icon_1);
 		JLabel wolongHome = new JLabel(icon_2);
 		JLabel war_furen = new JLabel(icon_3);
 		JLabel wanlipiaoxiang = new JLabel(icon_4);
-		JLabel yanjinghan = new JLabel(icon_photo);
+
 		
 		jp.add(hero);
 		jp.validate();
@@ -122,67 +124,77 @@ public class newTrip extends JFrame implements ActionListener{
 		
 		init(matrix);
 		paintMap(matrix, jp);
-		yanjinghan.setBounds(fightHead_x + 10, fightHead_y, fightHead_image_width, fightHead_image_height);
-		jp.add(yanjinghan);
+
 		initLabel(jp);
 		jp.updateUI();
-		
 		Monster ms = new Monster();//怪物信息类
 		monster = ms.monster_distribution(matrix, monster, 20);//在该地图的可行区域，有20个怪物
 		this.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e){
 				matrix = MoveLogic.moveStrategy(matrix, e.getKeyCode(), Person_x, Person_y);
-				paintMap(matrix, jp);
+				paintMap(matrix, jp);updateInfo();
 				jp.updateUI();
-				if(monster[Person_x][Person_y] == 1){
-					setVisible(false);
-					new monster_fight();
+				if(count_duty == 10){
+					if(Person_x == 4 && Person_y == 1){
+						MyDialog.showMessageDialog("                              师傅，我回来啦", "任务", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+						MyDialog.showMessageDialog("              嘿嘿，好徒儿，今天中午可以开荤了，快把我藏的那两坛好\n      酒拿出来！", "任务", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+						setVisible(false);
+						new Kongfu(player);
+					}
+				}
+				else{
+					if(monster[Person_x][Person_y] == 1){
+						int randNum = (int )(Math.random() * 100) % numVc.size();
+						monster_fight mf = new monster_fight(new Hero(),new Monster(),numVc,randNum);
+						mf.setVisible(true);
+						Thread tf = new Thread(new Runnable() {		//异步回调
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								while(mf.isVisible()){
+									try {
+										Thread.sleep(1);
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								if(Math.random() > 0.25){
+									MyDialog.showMessageDialog(blank + "获得兔肉", "提示", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);	
+									count_duty++;
+								}
+								if(count_duty == 10){
+									MyDialog.showMessageDialog("                  " + "师傅交代的任务完成了，赶快回去吧！", "任务", LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);
+									monster = ms.mosnter_clear(monster);
+								}
+							}
+						});
+						tf.start();
+					}
 				}
 			}
 		});
 	}
 	
-
-	
 	private void initLabel(JPanel jp){
-		name = new JLabel("姓名：" + player.getname());
-		level = new JLabel("等级：" + player.getLevel());
-		HP = new JLabel("HP：" + player.getnowHP() + "//" + player.getlimitedHP());
-		MP = new JLabel("MP：" + player.getnowMP() + "//" + player.getlimitedMP());
-		attack = new JLabel("攻击力：" + player.getBaseAttack());
-		ex = new JLabel("经验：" + player.getEX());
+		for(int i = 0; i < heroInfo.size();i++){
+			jp.add(heroInfo.get(i));
+		}
 		duty = new JLabel("<html>主线任务:在卧龙<br/>居附近为师傅打猎兔肉：<html>" + count_duty + "/" + "10");
 		exit = new JButton("退出游戏");
 		Goods = new JButton("物品");
-		name.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 20, WIDTH, HEIGHT);
-		level.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60,fightHead_image_height + 40, WIDTH, HEIGHT);
-		ex.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 60, WIDTH,HEIGHT);
-		HP.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 100, WIDTH, HEIGHT);
-		MP.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 120, WIDTH, HEIGHT);
-		attack.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 140, WIDTH, HEIGHT);
 		duty.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 180, WIDTH + 30, HEIGHT + 40);
 		Goods.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 260, WIDTH + 20, HEIGHT);
 		exit.setBounds(LenthAll.WINDOW_WIDTH - fightHead_image_width + 60, fightHead_image_height + 300, WIDTH + 20, HEIGHT);
 		Goods.addActionListener(this);
 		exit.addActionListener(this);
-		jp.add(level);
-		jp.add(ex);
-		jp.add(name);
-		jp.add(HP);
-		jp.add(MP);
-		jp.add(attack);
 		jp.add(duty);
 		jp.add(exit);
 		jp.add(Goods);
 	}
 	
-	private void updataInfo(){
-		name.setText("姓名：" + player.getname());
-		level.setText("等级：" + player.getLevel());
-		HP.setText("HP：" + player.getnowHP() + "//" + player.getlimitedHP());
-		MP.setText("MP：" + player.getnowMP() + "//" + player.getlimitedMP());
-		attack.setText("攻击力：" + player.getBaseAttack());
-		ex.setText("经验：" + player.getEX());
+	private void updateInfo(){
+		HeroInfo.updateInfo(heroInfo);
 		duty.setText("<html>主线任务:在卧龙<br/>居附近为师傅打猎兔肉：<html>" + count_duty + "/" + "10");
 	}
 	
@@ -256,6 +268,7 @@ public class newTrip extends JFrame implements ActionListener{
 				case MapDeploy.MOUNTAIN_ON:
 					montain.get(count_mountain).setBounds(-10 + j*LenthAll.IMAGE_WIDTH, -10 + i*LenthAll.IMAGE_HEIGHT, LenthAll.IMAGE_WIDTH, LenthAll.IMAGE_HEIGHT);
 					jp.add(montain.get(count_mountain++));
+					break;
 				default:
 					break;
 				}
@@ -267,7 +280,25 @@ public class newTrip extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("物品")){
-			
+			ProcessDialog pd = new ProcessDialog();
+			Thread td = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					while(pd.isVisible()){
+						try {
+							Thread.sleep(1);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					Goods.setFocusable(false);
+					exit.setFocusable(false);
+				}
+			});
+			td.start();
 		}
 		else if(e.getActionCommand().equals("退出游戏")){
 			MyDialog.showMessageDialog("            记录已保存,点击确定退出游戏。。。。。。。。。。", null, LenthAll.TALK_DIALOG_WIDTH, LenthAll.TALK_DIALOG_HEIGHT);

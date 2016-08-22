@@ -10,8 +10,8 @@ import java.net.MalformedURLException;
 public class music{
 	boolean looping = false;
     File file1 = new File("src/MusicSource/网络歌手 - 镇魂街主题曲.wav"); 
-AudioClip sound1; 
-AudioClip chosenClip; 
+	AudioClip sound1; 
+	AudioClip chosenClip; 
 
      public music(){
         try {

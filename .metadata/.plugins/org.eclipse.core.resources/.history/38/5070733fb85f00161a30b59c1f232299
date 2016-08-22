@@ -1,0 +1,11 @@
+package Skill;
+
+public interface SkillAll {
+	void level_plus();
+	int level();
+	int consume();
+	void getConsume();
+	int DamageValue();
+	void getDamageValue();
+	String getSkillname();
+}

@@ -1,6 +1,5 @@
 package PersonAll;
 
-import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -98,6 +97,71 @@ public class yannanzheng implements PersonAll{
 	}
 	@Override
 	public void addEX(int paraEX) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public int getUpEx() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void setUpEx(int paraEx) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setLevel(int paraLevel) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setEx(int paraEx) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setPriority(int para) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setNowHP(int paraHP) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setNowMP(int paraMP) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void SkillPointPlus() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void SkillPointSub() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public int getSkillPoint() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getMoney() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void addMoney(int paraMoney) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void subMoney(int paraMoney) {
 		// TODO Auto-generated method stub
 		
 	}

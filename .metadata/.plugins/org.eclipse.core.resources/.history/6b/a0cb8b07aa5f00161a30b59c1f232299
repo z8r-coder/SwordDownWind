@@ -1,0 +1,33 @@
+package Skill;
+
+public class ziqidonglai implements SkillAll{
+	private String skillname;
+	
+	public ziqidonglai(){
+		skillname = "紫气东来";
+	}
+	public int consume() {				//紫气东来消耗300MP
+		// TODO Auto-generated method stub
+		return 300;
+	}
+
+	@Override
+	public int DamageValue() {
+		// TODO Auto-generated method stub
+		return 500;						//杀伤力在基础攻击上追加500.
+	}
+	
+	public String getSkillname() {
+		return skillname;
+	}
+	@Override
+	public void level_plus() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public int level() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

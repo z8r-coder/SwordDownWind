@@ -1,0 +1,9 @@
+package dialogPackage;
+
+import javax.swing.JDialog;
+
+public class SkillProcess extends JDialog{
+	public SkillProcess() {
+		// TODO Auto-generated constructor stub
+	}
+}

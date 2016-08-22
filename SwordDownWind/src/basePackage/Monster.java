@@ -25,4 +25,13 @@ public class Monster {
 		}
 		return monster;
 	}
+	
+	public int[][] mosnter_clear(int[][] matrix){ // clear the monster in the map
+		for(int i = 0; i < LenthAll.COUNT_ROW;i++){
+			for(int j = 0;j < LenthAll.COUNT_LATER_COL;j++){
+				matrix[i][j] = 0;
+			}
+		}
+		return matrix;
+	}
 }
